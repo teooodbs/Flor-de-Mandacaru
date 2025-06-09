@@ -138,27 +138,6 @@ main {
     margin-bottom: 15px;
 }
 
-.comprar-btn {
-    background-color: #786c51;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 1em;
-    font-weight: 500;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    width: 80%; 
-    box-sizing: border-box; 
-}
-
-.comprar-btn:hover {
-    background-color: #433d30;
-}
-
 footer {
     background-color: #4a3b42;
     color: #f0e0e8; 
@@ -190,3 +169,51 @@ footer p {
         font-size: 1.1em;
     }
 }
+
+.botoes-card {
+  display: flex;
+  justify-content: center; 
+  gap: 10px;
+  margin-top: 15px; 
+}
+
+
+.btn-adicionar,.btn-detalhes {
+  flex-grow: 1;
+  padding: 10px 5px;
+  font-family: "Tinos", sans-serif; 
+  font-size: 0.9em; 
+  font-weight: 600;
+  text-align: center;
+  border-radius: 6px; 
+  border: 2px solid transparent; 
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+
+.btn-adicionar {
+  background-color: #727851; 
+  color: #fefcf5; 
+  border-color: #727851; 
+}
+
+.btn-adicionar:hover {
+  background-color: #524c36; 
+  border-color: #524c36;
+  transform: scale(1.03);
+}
+
+
+.btn-detalhes {
+  background-color: transparent; 
+  color: #727851; 
+  border-color: #727851; 
+}
+
+.btn-detalhes:hover {
+  background-color: #727851; 
+  color: #fefcf5; 
+  transform: scale(1.03);
+}
+
