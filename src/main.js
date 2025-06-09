@@ -1,9 +1,8 @@
-// src/main.js
 
 // ==========================================================
-// 1. IMPORTAÇÕES
+// IMPORTAÇÕES
 // ==========================================================
-// Importa o CSS principal para o Vite aplicar à página.
+// Importa CSS
 import './style.css';
 // Importa o catálogo de produtos do nosso arquivo de dados.
 import { catalogoCompleto } from './data/itensLoja.js';
@@ -13,13 +12,8 @@ import { criarCardItemElemento } from './components/CardItem.js';
 import { lerCarrinho, removerDoCarrinho } from './utils/carrinho.js';
 
 
-// ==========================================================
-// 2. FUNÇÕES PRINCIPAIS DE RENDERIZAÇÃO E UI
-// ==========================================================
 
-/**
- * Renderiza todas as seções de produtos na página principal.
- */
+
 function renderizarSecoesDeProdutos() {
   // Filtra os produtos por categoria
   const flores = catalogoCompleto.filter(item => item.categoria === 'Flores');
@@ -42,10 +36,7 @@ function renderizarSecoesDeProdutos() {
   buques.forEach(item => containerBuques.appendChild(criarCardItemElemento(item)));
 }
 
-/**
- * Renderiza o conteúdo do carrinho na sidebar, calcula totais e atualiza o contador.
- * Exportada para ser chamada de outros módulos (como CardItem.js).
- */
+
 export function renderizarCarrinho() {
   const carrinho = lerCarrinho();
   const containerItens = document.getElementById('itens-do-carrinho-container');
@@ -88,30 +79,19 @@ export function renderizarCarrinho() {
   });
 }
 
-/**
- * Abre a sidebar do carrinho.
- * Exportada para ser chamada de outros módulos.
- */
 export function abrirCarrinho() {
   document.getElementById('sidebar-carrinho').classList.add('aberto');
   document.getElementById('overlay-carrinho').classList.add('visivel');
 }
 
-/**
- * Fecha a sidebar do carrinho.
- * Usada apenas internamente neste arquivo.
- */
+
 function fecharCarrinho() {
   document.getElementById('sidebar-carrinho').classList.remove('aberto');
   document.getElementById('overlay-carrinho').classList.remove('visivel');
 }
 
 
-// ==========================================================
-// 3. PONTO DE ENTRADA E EVENTOS GLOBAIS
-// ==========================================================
 
-// Quando o HTML da página estiver pronto, o código abaixo será executado.
 document.addEventListener('DOMContentLoaded', () => {
   // --- Seleciona os elementos da interface ---
   const btnAbrirCarrinho = document.getElementById('btn-abrir-carrinho');
