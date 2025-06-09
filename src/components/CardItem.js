@@ -21,6 +21,7 @@ export function criarCardItemElemento(item) {
   `;
 
   // 4. Adiciona a funcionalidade (eventos) aos botões (por enquanto, só um console.log)
+  //import { funcaoadcionaritem } from '../services/carrinhoStorage.js';
   const btnAdicionar = card.querySelector('.btn-adicionar');
   btnAdicionar.addEventListener('click', () => {
     console.log(`Adicionar ao carrinho: ${item.nome}`);
