@@ -37,4 +37,23 @@ document.addEventListener('DOMContentLoaded', () => {
   renderizarSecao('lista-buques', 'Buquês', catalogoParaRenderizar);
 
   console.log("Renderização concluída!");
+  const btnAbrirCarrinho = document.getElementById('btn-abrir-carrinho');
+  const btnFecharCarrinho = document.getElementById('btn-fechar-carrinho');
+  const sidebar = document.getElementById('sidebar-carrinho');
+  const overlay = document.getElementById('overlay-carrinho');
+
+  function abrirCarrinho() {
+    sidebar.classList.add('aberto');
+    overlay.classList.add('visivel');
+  }
+
+  function fecharCarrinho() {
+    sidebar.classList.remove('aberto');
+    overlay.classList.remove('visivel');
+  }
+
+  // Adiciona os eventos para abrir e fechar
+  btnAbrirCarrinho.addEventListener('click', abrirCarrinho);
+  btnFecharCarrinho.addEventListener('click', fecharCarrinho);
+  overlay.addEventListener('click', fecharCarrinho); // Fecha ao clicar fora
 });

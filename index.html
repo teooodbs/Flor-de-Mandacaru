@@ -28,6 +28,14 @@
                     <li><a href="#">Contato</a></li>
                 </ul>
             </nav>
+            <div class="header-carrinho">
+                <button id="btn-abrir-carrinho">
+                    <svg class="icone-carrinho" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <path d="M19 7h-3V6a4 4 0 0 0-8 0v1H5a1 1 0 0 0-1 1v11a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V8a1 1 0 0 0-1-1Zm-9-1a2 2 0 0 1 4 0v1h-4Z"/>
+                    </svg>                    
+                    <span id="contador-carrinho">0</span>
+                </button>
+            </div>
         </div>
     </header>
 
@@ -54,12 +62,29 @@
             <section id="lista-buques" class="lista-itens"></section>
         </div>
     </main>
+    <div id="overlay-carrinho"></div>
 
-    <footer>
+        <aside id="sidebar-carrinho" class="carrinho-container">
+            <header class="carrinho-header">
+                <h3>Meu Carrinho</h3>
+                <button id="btn-fechar-carrinho">X</button>
+            </header>
+            <div id="itens-do-carrinho-container">
+                <p>Seu carrinho está vazio.</p>
+            </div>
+            <footer class="carrinho-footer">
+                <div id="total-carrinho">
+                </div>
+                <button id="btn-finalizar-compra">Finalizar Compra</button>
+            </footer>
+        </aside>
+
+    <footer id="footer">
         <div class="container">
             <p>&copy; 2025 Floricultura Flor de Mandacaru. Todos os direitos reservados.</p>
             <p>Sinta a beleza da natureza em cada pétala!</p>
         </div>
     </footer>
+
     <script type="module" src="/src/main.js"></script>
 </body>
