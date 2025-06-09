@@ -11,8 +11,8 @@ body {
     font-family: 'Mel'; 
     margin: 0;
     padding: 0;
-    background-color: #fefcf5;
-    color: #555;
+    background-color: #FBF9F1 ;
+    color: #4E342E ;
 }
 
 .container {
@@ -23,7 +23,7 @@ body {
 }
 
 header {
-    background-color: #727851;
+    background-color: #8D6E63 ;
     padding: 20px 0;
     border-bottom: 2px solid #fff5f9; 
     text-align: center;
@@ -92,7 +92,7 @@ main {
 }
 
 .titulo-pagina p {
-    color: #666;
+    color: #4E342E ;
     font-size: 1.1em;
 }
 
@@ -126,7 +126,7 @@ main {
 }
 
 .card-item h3 {
-    color: #786c51; 
+    color: #82574d; 
     font-size: 1.4em;
     margin-bottom: 8px;
 }
@@ -148,7 +148,7 @@ main {
 }
 
 #footer {
-    background-color: #4a3b42;
+    background-color: #8D6E63;
     color: #f0e0e8; 
     text-align: center;
     padding: 25px 0;
@@ -382,4 +382,15 @@ main {
   min-width: 12px; 
   text-align: center;
   line-height: 1.2;
+}
+.item-no-carrinho .btn-remover-item {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #a04f4f; /* A cor do ícone virá daqui! */
+  transition: color 0.3s ease;
+}
+
+.item-no-carrinho .btn-remover-item:hover {
+  color: #520f0f; /* A cor do ícone no hover virá daqui! */
 }

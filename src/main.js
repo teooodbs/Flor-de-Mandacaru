@@ -1,4 +1,3 @@
-
 // src/main.js
 
 // ==========================================================
@@ -10,39 +9,42 @@ import './style.css';
 import { catalogoCompleto } from './data/itensLoja.js';
 // Importa a função que sabe como criar o HTML de um card de produto.
 import { criarCardItemElemento } from './components/CardItem.js';
-// Importa a função que sabe como ler os dados do carrinho no localStorage.
-import { lerCarrinho } from './utils/carrinho.js';
+// Importa as funções de lógica do carrinho que interagem com o localStorage.
+import { lerCarrinho, removerDoCarrinho } from './utils/carrinho.js';
 
 
 // ==========================================================
-// 2. FUNÇÕES PRINCIPAIS
+// 2. FUNÇÕES PRINCIPAIS DE RENDERIZAÇÃO E UI
 // ==========================================================
 
 /**
- * Renderiza uma seção específica de produtos na página.
- * (Esta função não precisa de 'export' pois só é usada aqui dentro do main.js)
+ * Renderiza todas as seções de produtos na página principal.
  */
 function renderizarSecoesDeProdutos() {
-  // Filtra e renderiza cada categoria no seu respectivo container
+  // Filtra os produtos por categoria
   const flores = catalogoCompleto.filter(item => item.categoria === 'Flores');
   const cestas = catalogoCompleto.filter(item => item.categoria === 'Cestas de Presente');
   const buques = catalogoCompleto.filter(item => item.categoria === 'Buquês');
 
-  flores.forEach(item => {
-    document.getElementById('lista-flores').appendChild(criarCardItemElemento(item));
-  });
-  cestas.forEach(item => {
-    document.getElementById('lista-cestas').appendChild(criarCardItemElemento(item));
-  });
-  buques.forEach(item => {
-    document.getElementById('lista-buques').appendChild(criarCardItemElemento(item));
-  });
+  // Pega os containers do HTML
+  const containerFlores = document.getElementById('lista-flores');
+  const containerCestas = document.getElementById('lista-cestas');
+  const containerBuques = document.getElementById('lista-buques');
+
+  // Limpa os containers antes de adicionar os novos itens
+  containerFlores.innerHTML = '';
+  containerCestas.innerHTML = '';
+  containerBuques.innerHTML = '';
+
+  // Adiciona cada item ao seu container respectivo
+  flores.forEach(item => containerFlores.appendChild(criarCardItemElemento(item)));
+  cestas.forEach(item => containerCestas.appendChild(criarCardItemElemento(item)));
+  buques.forEach(item => containerBuques.appendChild(criarCardItemElemento(item)));
 }
 
 /**
- * ATUALIZADA: Renderiza os itens do carrinho na sidebar, calcula o total
- * e atualiza o contador no header.
- * (Esta função PRECISA de 'export' para ser usada pelo CardItem.js)
+ * Renderiza o conteúdo do carrinho na sidebar, calcula totais e atualiza o contador.
+ * Exportada para ser chamada de outros módulos (como CardItem.js).
  */
 export function renderizarCarrinho() {
   const carrinho = lerCarrinho();
@@ -50,12 +52,12 @@ export function renderizarCarrinho() {
   const containerTotal = document.getElementById('total-carrinho');
   const contadorHeader = document.getElementById('contador-carrinho');
 
-  containerItens.innerHTML = ''; // Limpa antes de renderizar
+  containerItens.innerHTML = ''; // Limpa a lista de itens do carrinho
 
   if (carrinho.length === 0) {
     containerItens.innerHTML = '<p>Seu carrinho está vazio.</p>';
-    containerTotal.innerHTML = '';
-    contadorHeader.innerText = '0';
+    containerTotal.innerHTML = ''; // Limpa o total
+    contadorHeader.innerText = '0'; // Zera o contador do header
     return;
   }
 
@@ -76,7 +78,11 @@ export function renderizarCarrinho() {
       <span>${item.nome}</span>
       <span>Qtd: ${item.quantidade}</span>
       <span>R$ ${(item.preco * item.quantidade).toFixed(2).replace('.', ',')}</span>
-      <button class="btn-remover-item" data-id="${item.id}">Remover</button>
+      <button class="btn-remover-item" data-id="${item.id}" title="Remover item">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18">
+            <path fill="currentColor" d="M17,4H13.84A3,3,0,0,0,11.16,1H7.84A3,3,0,0,0,5.16,4H2V6H22V4ZM4.16,4A1,1,0,0,1,5.15,3H7.84a1,1,0,0,1,1-.73,1,1,0,0,1,1,.73h2.14a1,1,0,0,1,1-.73,1,1,0,0,1,1,.73h2.69a1,1,0,0,1,1,1ZM4,21a3,3,0,0,0,3,3H17a3,3,0,0,0,3-3V7H4Z"/>
+        </svg>
+      </button>
     `;
     containerItens.appendChild(elementoItem);
   });
@@ -84,7 +90,7 @@ export function renderizarCarrinho() {
 
 /**
  * Abre a sidebar do carrinho.
- * (Esta função PRECISA de 'export' para ser usada pelo CardItem.js)
+ * Exportada para ser chamada de outros módulos.
  */
 export function abrirCarrinho() {
   document.getElementById('sidebar-carrinho').classList.add('aberto');
@@ -93,7 +99,7 @@ export function abrirCarrinho() {
 
 /**
  * Fecha a sidebar do carrinho.
- * (Não precisa de 'export', só é usada aqui)
+ * Usada apenas internamente neste arquivo.
  */
 function fecharCarrinho() {
   document.getElementById('sidebar-carrinho').classList.remove('aberto');
@@ -102,22 +108,33 @@ function fecharCarrinho() {
 
 
 // ==========================================================
-// 3. PONTO DE ENTRADA DA APLICAÇÃO
+// 3. PONTO DE ENTRADA E EVENTOS GLOBAIS
 // ==========================================================
 
 // Quando o HTML da página estiver pronto, o código abaixo será executado.
 document.addEventListener('DOMContentLoaded', () => {
-  // --- Seleciona os elementos da sidebar ---
+  // --- Seleciona os elementos da interface ---
   const btnAbrirCarrinho = document.getElementById('btn-abrir-carrinho');
   const btnFecharCarrinho = document.getElementById('btn-fechar-carrinho');
   const overlay = document.getElementById('overlay-carrinho');
+  const containerItensCarrinho = document.getElementById('itens-do-carrinho-container');
 
-  // --- Adiciona os eventos de abrir e fechar ---
+  // --- Adiciona os eventos de abrir e fechar a sidebar ---
   btnAbrirCarrinho.addEventListener('click', abrirCarrinho);
   btnFecharCarrinho.addEventListener('click', fecharCarrinho);
   overlay.addEventListener('click', fecharCarrinho);
 
+  // --- Adiciona o evento para REMOVER itens (Delegação de Eventos) ---
+  containerItensCarrinho.addEventListener('click', (evento) => {
+    const botaoRemover = evento.target.closest('.btn-remover-item');
+    if (botaoRemover) {
+      const idParaRemover = botaoRemover.dataset.id;
+      removerDoCarrinho(idParaRemover); // Lógica de remover
+      renderizarCarrinho(); // Atualiza a tela
+    }
+  });
+
   // --- Renderiza o conteúdo inicial da página ---
   renderizarSecoesDeProdutos();
-  renderizarCarrinho(); // Renderiza o carrinho para mostrar o estado inicial (vazio ou não)
+  renderizarCarrinho(); // Mostra o estado inicial do carrinho
 });

@@ -42,3 +42,16 @@ export function adicionarAoCarrinho(idDoItem) {
   // Salva o carrinho atualizado no localStorage
   salvarCarrinho(carrinho);
 }
+// Adicione esta função ao final de src/utils/cart.js
+
+/**
+ * Remove um item do carrinho baseado no seu ID.
+ * @param {string} idDoItem - O ID do item a ser removido.
+ */
+export function removerDoCarrinho(idDoItem) {
+  const carrinho = lerCarrinho();
+  // O .filter() cria um novo array com todos os itens que passam no teste.
+  // O teste é: o ID do item é DIFERENTE do ID que queremos remover?
+  const novoCarrinho = carrinho.filter(item => item.id !== idDoItem);
+  salvarCarrinho(novoCarrinho); // Salva o novo carrinho sem o item removido.
+}
