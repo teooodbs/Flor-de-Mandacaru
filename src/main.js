@@ -8,7 +8,8 @@ import { catalogoCompleto } from './data/itensLoja.js';
 // Importa a função que cria o HTML de um card de item
 import { criarCardItemElemento } from './components/CardItem.js';
 
-
+//importando o localstorage
+//import { funcao } from './services/carrinhoStorage.js';
 
 
 function renderizarSecao(idContainer, categoria, catalogo) {
