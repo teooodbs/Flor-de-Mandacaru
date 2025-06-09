@@ -1,5 +1,14 @@
+@font-face {
+  /* 1. Dê um "apelido" para sua fonte. Use este nome no resto do CSS. */
+  font-family: 'Mel';
+
+  /* 2. Indique o caminho do arquivo .otf e o formato correto ('opentype') */
+  src: url('./assets/fonts/Bagusan\ Serif\ Regular.ttf') format('truetype');
+  /* 3. Especifique o peso e estilo desta fonte (geralmente 'normal' para o arquivo principal) */
+
+}
 body {
-    font-family: "Tinos", sans-serif; 
+    font-family: 'Mel'; 
     margin: 0;
     padding: 0;
     background-color: #fefcf5;
