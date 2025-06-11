@@ -19,10 +19,8 @@ export function adicionarAoCarrinho(idDoItem) {
   const itemNoCarrinho = carrinho.find(item => item.id === idDoItem);
 
   if (itemNoCarrinho) {
-    // Se o item já está no carrinho, apenas aumenta a quantidade
     itemNoCarrinho.quantidade++;
   } else {
-    // Se for um item novo, busca no catálogo e adiciona ao carrinho
     const itemDoCatalogo = catalogoCompleto.find(item => item.id === idDoItem);
     if (itemDoCatalogo) {
       carrinho.push({ ...itemDoCatalogo, quantidade: 1 });
