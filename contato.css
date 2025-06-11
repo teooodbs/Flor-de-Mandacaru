@@ -1,0 +1,86 @@
+.container-formulario-contato {
+    padding: 40px 20px;
+    max-width: 800px;
+    margin: 40px auto;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.08);
+    text-align: center;
+    border: 1px solid #f0e0e8;
+}
+
+.container-formulario-contato h2 {
+    font-family: 'Edu NSW ACT Cursive', cursive;
+    font-size: 2.5em;
+    color: #727851;;
+    margin-bottom: 20px;
+}
+
+.container-formulario-contato p {
+    font-family: 'Mel', sans-serif;
+    font-size: 1.1em;
+    color: #4E342E;
+    margin-bottom: 30px;
+}
+
+.formulario-contato {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    text-align: left;
+}
+
+.grupo-formulario {
+    margin-bottom: 15px;
+}
+
+.grupo-formulario label {
+    display: block;
+    margin-bottom: 8px;
+    font-family: 'Mel', sans-serif;
+    font-weight: bold;
+    color: #4E342E;
+}
+
+.grupo-formulario input[type="text"],
+.grupo-formulario input[type="email"],
+.grupo-formulario textarea {
+    width: calc(100% - 24px);
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-family: 'Mel', sans-serif;
+    font-size: 1em;
+    box-sizing: border-box;
+}
+
+.grupo-formulario textarea {
+    resize: vertical;
+    min-height: 120px;
+}
+
+.grupo-formulario button {
+    background-color: #727851;
+    color: #fefcf5;
+    padding: 15px 30px;
+    border: none;
+    border-radius: 5px;
+    font-family: "Tinos", sans-serif;
+    font-size: 1.1em;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    width: auto;
+    align-self: center;
+}
+
+.grupo-formulario button:hover {
+    background-color: #524c36;
+    transform: scale(1.03);
+}
+
+@media (max-width: 768px) {
+    .container-formulario-contato {
+        margin: 20px;
+        padding: 20px;
+    }
+}

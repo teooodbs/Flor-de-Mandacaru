@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Floricultura Flor de Mandacaru - Contato</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="icon" href="Public/img/logo-flor.png" type="image/png">
+    <link href="https://fonts.googleapis.com/css2?family=Edu+NSW+ACT+Cursive:wght@400..700&family=Tinos:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="contato.css"> </head>
+<body>
+    <header>
+        <div class="container">
+          <div class="logo">
+            <img src="Public/img/logo-flor.png" alt="Flor">
+            <h1>Flor de Mandacaru</h1>
+          </div>
+            <nav>
+                <ul>
+                    <li><a href="/index.html">Início</a></li>
+                    <li><a href="#">Cestas</a></li>
+                    <li><a href="#">Monte seu buquê</a></li>
+                    <li><a href="/contato.html">Contato</a></li>
+                    <li><a href="/carrinho.html">Ver Carrinho</a>
+                    </li>
+                </ul>
+            </nav>
+            <div class="header-carrinho">
+                <button id="btn-abrir-carrinho">
+                    <svg class="icone-carrinho" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <path d="M19 7h-3V6a4 4 0 0 0-8 0v1H5a1 1 0 0 0-1 1v11a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V8a1 1 0 0 0-1-1Zm-9-1a2 2 0 0 1 4 0v1h-4Z"/>
+                    </svg>
+                    <span id="contador-carrinho">0</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <section class="container-formulario-contato">
+                <h2>Fale Conosco!</h2>
+                <p>Tem alguma dúvida, sugestão ou quer fazer um pedido especial? Entre em contato conosco preenchendo o formulário abaixo.</p>
+                <form action="#" method="POST" class="formulario-contato">
+                    <div class="grupo-formulario">
+                        <label for="name">Nome Completo:</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="grupo-formulario">
+                        <label for="email">Seu E-mail:</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="grupo-formulario">
+                        <label for="message">Sua Mensagem:</label>
+                        <textarea id="message" name="message" required></textarea>
+                    </div>
+                    <div class="grupo-formulario">
+                        <button type="submit">Enviar Mensagem</button>
+                    </div>
+                </form>
+            </section>
+        </div>
+    </main>
+
+    <div id="overlay-carrinho"></div>
+
+    <aside id="sidebar-carrinho" class="carrinho-container">
+        <header class="carrinho-header">
+            <h3>Meu Carrinho</h3>
+            <button id="btn-fechar-carrinho">X</button>
+        </header>
+        <div id="itens-do-carrinho-container">
+            <p>Seu carrinho está vazio.</p>
+        </div>
+        <footer class="carrinho-footer">
+            <div id="total-carrinho">
+            </div>
+            <button id="btn-finalizar-compra">Finalizar Compra</button>
+        </footer>
+    </aside>
+
+    <footer id="footer">
+        <div class="container">
+            <p>&copy; 2025 Floricultura Flor de Mandacaru. Todos os direitos reservados.</p>
+            <p>Sinta a beleza da natureza em cada pétala!</p>
+        </div>
+    </footer>
+
+    <script type="module" src="/src/main.js"></script>
+</body>
+</html>
