@@ -15,12 +15,12 @@ import { lerCarrinho, removerDoCarrinho } from './utils/carrinho.js';
 
 
 function renderizarSecoesDeProdutos() {
-  // Filtra os produtos por categoria
+  // Filtra por categoria (optei por colocar todos os itens num só arquivo)
   const flores = catalogoCompleto.filter(item => item.categoria === 'Flores');
   const cestas = catalogoCompleto.filter(item => item.categoria === 'Cestas de Presente');
   const buques = catalogoCompleto.filter(item => item.categoria === 'Buquês');
 
-  // Pega os containers do HTML
+  // Pega do html cada container
   const containerFlores = document.getElementById('lista-flores');
   const containerCestas = document.getElementById('lista-cestas');
   const containerBuques = document.getElementById('lista-buques');
@@ -30,7 +30,7 @@ function renderizarSecoesDeProdutos() {
   containerCestas.innerHTML = '';
   containerBuques.innerHTML = '';
 
-  // Adiciona cada item ao seu container respectivo
+  // cada item vai pro respectivo container 
   flores.forEach(item => containerFlores.appendChild(criarCardItemElemento(item)));
   cestas.forEach(item => containerCestas.appendChild(criarCardItemElemento(item)));
   buques.forEach(item => containerBuques.appendChild(criarCardItemElemento(item)));
@@ -43,24 +43,23 @@ export function renderizarCarrinho() {
   const containerTotal = document.getElementById('total-carrinho');
   const contadorHeader = document.getElementById('contador-carrinho');
 
-  containerItens.innerHTML = ''; // Limpa a lista de itens do carrinho
+  containerItens.innerHTML = ''; 
 
   if (carrinho.length === 0) {
     containerItens.innerHTML = '<p>Seu carrinho está vazio.</p>';
-    containerTotal.innerHTML = ''; // Limpa o total
-    contadorHeader.innerText = '0'; // Zera o contador do header
+    containerTotal.innerHTML = ''; 
+    contadorHeader.innerText = '0'; 
     return;
   }
 
-  // Calcula e exibe o preço total com .reduce()
+  // Calcula e exibe o preço total com reduce. o de baixo é pra quantidade, tbm com reduce
   const precoTotal = carrinho.reduce((total, item) => total + item.preco * item.quantidade, 0);
   containerTotal.innerHTML = `Total: R$ ${precoTotal.toFixed(2).replace('.', ',')}`;
-
-  // Calcula e exibe a quantidade total de itens no header com .reduce()
+  
   const quantidadeTotal = carrinho.reduce((total, item) => total + item.quantidade, 0);
   contadorHeader.innerText = quantidadeTotal;
 
-  // Cria o HTML para cada item do carrinho
+  // HTML para cada item do carrinho
   carrinho.forEach(item => {
     const elementoItem = document.createElement('div');
     elementoItem.classList.add('item-no-carrinho');
@@ -91,30 +90,30 @@ function fecharCarrinho() {
 }
 
 
-
+// Parte do Tratamento de Eventos (pra abrir e fechar a sidebar do carrinho)
 document.addEventListener('DOMContentLoaded', () => {
-  // --- Seleciona os elementos da interface ---
+  // Seleciona os elementos da interface
   const btnAbrirCarrinho = document.getElementById('btn-abrir-carrinho');
   const btnFecharCarrinho = document.getElementById('btn-fechar-carrinho');
   const overlay = document.getElementById('overlay-carrinho');
   const containerItensCarrinho = document.getElementById('itens-do-carrinho-container');
 
-  // --- Adiciona os eventos de abrir e fechar a sidebar ---
+  // Com um click vc avre e fecha essa sidebar
   btnAbrirCarrinho.addEventListener('click', abrirCarrinho);
   btnFecharCarrinho.addEventListener('click', fecharCarrinho);
   overlay.addEventListener('click', fecharCarrinho);
 
-  // --- Adiciona o evento para REMOVER itens (Delegação de Eventos) ---
+  // Adiciona o evento para REMOVER itens (Delegação de Eventos)
   containerItensCarrinho.addEventListener('click', (evento) => {
     const botaoRemover = evento.target.closest('.btn-remover-item');
     if (botaoRemover) {
       const idParaRemover = botaoRemover.dataset.id;
-      removerDoCarrinho(idParaRemover); // Lógica de remover
-      renderizarCarrinho(); // Atualiza a tela
+      removerDoCarrinho(idParaRemover); 
+      renderizarCarrinho(); 
     }
   });
 
-  // --- Renderiza o conteúdo inicial da página ---
+  // Renderiza o conteúdo inicial da página
   renderizarSecoesDeProdutos();
   renderizarCarrinho(); // Mostra o estado inicial do carrinho
 });
