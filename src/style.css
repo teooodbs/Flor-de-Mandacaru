@@ -1,10 +1,7 @@
 @font-face {
-  /* 1. Dê um "apelido" para sua fonte. Use este nome no resto do CSS. */
-  font-family: 'Mel';
 
-  /* 2. Indique o caminho do arquivo .otf e o formato correto ('opentype') */
+  font-family: 'Mel';
   src: url('./assets/fonts/Bagusan\ Serif\ Regular.ttf') format('truetype');
-  /* 3. Especifique o peso e estilo desta fonte (geralmente 'normal' para o arquivo principal) */
 
 }
 body {
@@ -160,7 +157,6 @@ main {
     font-size: 0.9em;
 }
 
-/* Responsividade adicional para telas menores se necessário */
 @media (max-width: 600px) {
     header h1 {
         font-size: 1.8em;
@@ -341,11 +337,10 @@ main {
 
 .header-carrinho {
   position: absolute;
-  top: 30px; /* Ajuste a distância do topo se precisar */
-  right: 30px; /* Ajuste a distância da direita se precisar */
+  top: 30px; 
+  right: 30px; 
 }
 
-/* O botão que contém o ícone e o contador */
 #btn-abrir-carrinho {
   background: none;
   border: none;
@@ -387,10 +382,10 @@ main {
   background: none;
   border: none;
   cursor: pointer;
-  color: #a04f4f; /* A cor do ícone virá daqui! */
+  color: #a04f4f; 
   transition: color 0.3s ease;
 }
 
 .item-no-carrinho .btn-remover-item:hover {
-  color: #520f0f; /* A cor do ícone no hover virá daqui! */
+  color: #520f0f; 
 }
